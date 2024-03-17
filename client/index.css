@@ -1,0 +1,126 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 100%;
+	height: 100vh;
+	font-family: 'Comfortaa', cursive;
+	margin: 0;
+	background-image: linear-gradient(to bottom, #5051F9, black);
+	background-repeat: no-repeat;
+	user-select: none;
+	padding-left: 20%;
+	padding-right: 20%;
+	color: white;
+}
+
+
+
+header {
+	height: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+main {
+	width: 100%;
+}
+
+.site-logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.site-logo span {
+	font-size: 30px;
+}
+
+.site-logo img {
+	width: 80px;
+} 
+
+
+.language-switch {
+	font-size: 20px;
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+} 
+
+.language-switch div {
+	transition: 0.5s;
+	transform: 0.5s;
+	cursor: pointer;
+}
+
+.language-switch div:hover {
+	color: rgb(197, 119, 23);
+}
+
+.language-active {
+	color: #000000;
+}
+
+
+.download-video {
+	margin-top: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.download-video span {
+	font-size: 30px;
+}
+
+.download-video input {
+	border: none;
+	outline: none;
+	width: 80%;
+	font-size: 18px;
+	padding-left: 1%;
+	padding-right: 1%;
+}
+
+.download-video div {
+	background-color: white;
+	width: 50%;
+	height: 60px;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+}
+
+.download-video button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 19%;
+	height: 50px;
+	border-radius: 10px;
+	font-size: 30px;
+	border: none;
+	background-color:#5051F9;
+	color: white;
+	transition: 0.5s;
+	transform: 0.5s;
+	cursor: pointer;
+}
+
+.download-video button:hover {
+	background-color:#7575fc;
+}
+
+.download-video button:active {
+	background-color: #181818;
+	transition: 0.1s;
+	transform: 0.1s;
+}
