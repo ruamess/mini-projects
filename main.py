@@ -20,15 +20,37 @@ def is_youtube_link(link):
 
 
 @app.post("/download_video/")
-async def download_video(link: str):
+async def download_video(link: str, permission: str = "720p"):
     try:
         if not is_youtube_link(link):
             raise HTTPException(status_code=400, detail="Ссылка не является ссылкой на YouTube видео")
 
         yt = YouTube(link)
-        stream = yt.streams.first()
+        video_title = yt.title
+        video_length = yt.length
+        thumbnail_url = yt.thumbnail_url
+
+        streams = yt.streams.filter(progressive=True)
+
+        selected_stream = None
+        for stream in streams:
+            if stream.resolution == permission:
+                selected_stream = stream
+                break
+
+        if not selected_stream:
+            available_resolutions = [stream.resolution for stream in streams]
+            raise HTTPException(status_code=400,
+                                detail=f"Выбранное разрешение недоступно. Доступные разрешения: {', '.join(available_resolutions)}")
+
         download_dir = get_downloads_folder()
-        stream.download(output_path=download_dir)
-        return {"message": f"Видео успешно загружено в {download_dir}"}
+        file_path = selected_stream.download(output_path=download_dir)
+        return {
+            "name": video_title,
+            "time": video_length,
+            "thumbnail_url": thumbnail_url,
+            "file_path": file_path
+        }
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to download video: {str(e)}")
