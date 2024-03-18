@@ -4,12 +4,24 @@ from fastapi import FastAPI, HTTPException
 from pytube import YouTube
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+
 
 from helpers import (is_youtube_link,
                      get_video_folder,
                      delete_file_after_delay)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"],
+)
 
 
 @app.get("/get_video_info/")
@@ -53,7 +65,7 @@ async def download_video(link: str, permission: str):
         video_folder = get_video_folder()
         file_path = selected_stream.download(output_path=video_folder)
 
-        asyncio.create_task(delete_file_after_delay(file_path, 60))
+        # asyncio.create_task(delete_file_after_delay(file_path, 60))
 
         return {"status": "success"}
 

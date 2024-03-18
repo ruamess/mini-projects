@@ -37,7 +37,50 @@
 
 		<div class="response-block">
 			<span class="response"></span>
-			<div id="loader" class="loader"></div>
+			<div class="loader_hidden"></div>
+		</div>
+
+
+		<div class="download-video">
+
+			<div class="download-video_title">
+				<span>Скачать видео:</span>
+			</div>
+
+			<div class="download-video_content">
+
+				<div class="video_info">
+					<img class="video_image" />
+					<span class="video_title"></span>
+					<span class="video_duration"></span>
+				</div>
+
+				<div class="video_download_choice">
+					<table>
+						<tr>
+							<td>
+								<span>720p.mp4</span>
+								<button onclick="sendDownloadRequest('720p')">Download</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>360p.mp4</span>
+								<button onclick="sendDownloadRequest('360p')">Download</button>
+							</td>
+
+						</tr>
+						<tr>
+							<td>
+								<span>mp4</span>
+								<button>Download</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+
 		</div>
 
 
@@ -60,7 +103,7 @@
 
 
 
-	<script src="./index.js"></script>
+	<script src=" ./index.js"></script>
 </body>
 
 </html>
