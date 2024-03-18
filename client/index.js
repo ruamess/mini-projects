@@ -12,26 +12,44 @@ function setActiveLanguage(languge) {
 }
 
 
+document.querySelector('input').addEventListener("keydown", (click) => {
+	if (click.code == "Enter") {
+		sendVideoLink()
+	}
+})
+
+
+
+function setLoaderVisiblity() {
+	let loader = document.getElementById("loader")
+	let check = loader.style.display == 'block' ? 'none' : 'block'
+	loader.style.display = check
+}
+
 function sendVideoLink() {
+
+	document.querySelector(".response").innerText = ''
+	setLoaderVisiblity()
+
 	const link = document.querySelector("input").value
-	console.log(link)
 	fetch(`http://127.0.0.1:8000/download_video/?link=${link}&permission=720p`, {
 		method: "POST"
 	})
 		.then(response => {
-			// Проверка статуса ответа
 			if (!response.ok) {
 				throw new Error("Ошибка HTTP: " + response.status);
 			}
-			// Преобразование ответа в JSON
+			setLoaderVisiblity()
 			return response.json();
 		})
 		.then(data => {
-			// Обработка данных из ответа
+			setLoaderVisiblity()
 			console.log(data);
 		})
 		.catch(error => {
-			// Обработка ошибок
+			setLoaderVisiblity()
+			document.querySelector(".response").innerText = error
+
 			console.error("Ошибка при выполнении запроса:", error);
 		});
 }
