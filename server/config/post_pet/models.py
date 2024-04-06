@@ -3,7 +3,7 @@ from django.db import models
 from user_app.models import User
 
 
-class Post(models.Model):
+class PetPost(models.Model):
     title = models.CharField(max_length=255)
     headers = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

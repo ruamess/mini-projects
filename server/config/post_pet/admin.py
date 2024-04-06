@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from post_pet.models import Post
+from post_pet.models import PetPost
 
-admin.site.register(Post)
+admin.site.register(PetPost)
