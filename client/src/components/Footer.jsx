@@ -1,14 +1,16 @@
+import ThemeSwithcer from "./ThemeSwithcer"
 
 
 const Footer = () => {
 
 
 	return (
-		<div className="w-screen h-20 bg-sea-blue flex items-center justify-center">
-			<footer >
-				<span>© 2024 - Rocketseat Explorer</span>
-			</footer>
-		</div>
+		<footer className="bg-white-ui dark:bg-dark-ui h-20 py-4 flex items-center">
+			<div className="container mx-auto flex flex-row items-center justify-center">
+				<p>© 2024 - RuamDays </p>
+				<ThemeSwithcer />
+			</div>
+		</footer>
 	)
 }
 
