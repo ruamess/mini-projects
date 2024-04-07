@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'djoser',
     'user_app',
     'post_pet',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +74,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
 
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -103,3 +105,11 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 APPEND_SLASH = False
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Your Project API',
+    'DESCRIPTION': 'Your project description',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
