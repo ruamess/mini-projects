@@ -6,7 +6,7 @@ from rest_framework import serializers
 class CustomUserCreateSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
         model = get_user_model()
-        fields = ('id', 'email', 'username', 'password', 'image')
+        fields = ('id', 'email', 'username', 'password', 'image', 'like')
 
     def validate(self, attrs):
         if 'image' not in attrs:
@@ -15,12 +15,10 @@ class CustomUserCreateSerializer(UserCreateSerializer):
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    anime_ratings = serializers.SerializerMethodField()
-    comments = serializers.SerializerMethodField()
 
     class Meta:
         model = get_user_model()
-        fields = ('id', 'username', 'email', 'image', 'anime_ratings', 'comments')
+        fields = ('id', 'username', 'email', 'image')
 
     def to_representation(self, instance):
         ret = super().to_representation(instance)

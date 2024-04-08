@@ -9,12 +9,11 @@ class User(AbstractUser):
     created_at = models.DateTimeField('Created', auto_now_add=True)
     username = models.CharField("User Name", max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to=user_avatar_path, blank=True, null=True)
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', ]
-
     objects = CustomUserManager()
-
+    likes = models.PositiveIntegerField(default=0)
+    posts = models.PositiveIntegerField(default=0)
     groups = models.ManyToManyField(Group, related_name="userapp_users")
     user_permissions = models.ManyToManyField(Permission, related_name="userapp_users")
 
