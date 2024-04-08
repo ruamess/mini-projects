@@ -55,6 +55,7 @@ class Comment(models.Model):
     content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey('PetPost', on_delete=models.CASCADE, related_name='comments_received')
+    like = models.PositiveIntegerField(default=0)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -63,3 +64,5 @@ class Comment(models.Model):
     def delete(self, *args, **kwargs):
         super().delete(*args, **kwargs)
         self.post.update_comments_count()
+
+
