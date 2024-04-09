@@ -65,4 +65,5 @@ class Comment(models.Model):
         super().delete(*args, **kwargs)
         self.post.update_comments_count()
 
-
+    def __str__(self):
+        return self.user.username

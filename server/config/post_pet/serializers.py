@@ -13,6 +13,9 @@ class SerializerPost(serializers.ModelSerializer):
 
 
 class SerializerLike(serializers.ModelSerializer):
+    user = CustomUserSerializer()
+    post = SerializerPost()
+
     class Meta:
         model = Like
         fields = "__all__"
