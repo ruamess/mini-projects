@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { sendSignIn, sendLogIn } from "../api"
-
-
-const LogIn = () => {
+import { HiXMark } from "react-icons/hi2";
+const AuthType = () => {
 
 	const [authType, setAuthType] = useState(true)
 	const [username, setUsername] = useState('')
@@ -24,17 +23,21 @@ const LogIn = () => {
 		setRepeatPassword('')
 	}
 
-
 	return (
 		<div className="bg-ui w-[450px] h-[600px] flex flex-col items-center justify-center rounded-md p-10 sm:p-20 m-2">
+			<div className="flex ">
+				<button>
+					<HiXMark />
+				</button>
+			</div>
 			<div>
 				{authType ? <span className="text-5xl">Login in</span> : <span className="text-5xl">Sign in</span>}
 			</div>
 
 			{authType ?
 				<div className="flex flex-col gap-7 mt-14 w-full">
-					<input placeholder="Email" type="text" className="bg-acc2 pl-4 pr-4 h-12 hover:bg-acc focus:bg-acc focus:outline-none rounded-md container" value={email} onChange={(e) => setEmail(e.target.value)} />
-					<input placeholder="Password" type="password" className="bg-acc2 pl-4 pr-4 h-12 hover:bg-acc focus:bg-acc focus:outline-none rounded-md container" value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)} />
+					<input placeholder="Email" type="email" className="bg-acc2 pl-4 pr-4 h-12 hover:bg-acc focus:bg-acc focus:outline-none rounded-md container" value={email} onChange={(e) => setEmail(e.target.value)} />
+					<input placeholder="Password" type="password" className="bg-acc2 pl-4 pr-4 h-12 hover:bg-acc focus:bg-acc focus:outline-none rounded-md container" value={password} onChange={(e) => setPassword(e.target.value)} />
 				</div>
 				:
 				<div className="flex flex-col gap-7 mt-14 w-full">
@@ -62,4 +65,4 @@ const LogIn = () => {
 	)
 }
 
-export default LogIn
+export default AuthType
