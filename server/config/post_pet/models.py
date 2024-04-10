@@ -22,6 +22,10 @@ class Like(models.Model):
         user.save()
 
 
+class Tags(models.Model):
+    title = models.CharField(max_length=10)
+
+
 class PetPost(models.Model):
     title = models.CharField(max_length=255)
     headers = models.TextField()
@@ -30,6 +34,7 @@ class PetPost(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts_received')
     views = models.PositiveIntegerField(default=0)
     count_comments = models.PositiveIntegerField(default=0)
+    tags = models.ForeignKey(Tags, on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

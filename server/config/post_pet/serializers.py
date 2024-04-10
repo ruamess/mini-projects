@@ -1,11 +1,17 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from post_pet.models import PetPost, Like, Comment
-from user_app.serializers import CustomUserSerializer
+
+
+class SerializerCreator(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ('id', 'username', 'image',)
 
 
 class SerializerPost(serializers.ModelSerializer):
-    creator = CustomUserSerializer()
+    creator = SerializerCreator()
 
     class Meta:
         model = PetPost
@@ -13,7 +19,7 @@ class SerializerPost(serializers.ModelSerializer):
 
 
 class SerializerLike(serializers.ModelSerializer):
-    user = CustomUserSerializer()
+    user = SerializerCreator()
     post = SerializerPost()
 
     class Meta:
@@ -22,7 +28,7 @@ class SerializerLike(serializers.ModelSerializer):
 
 
 class SerializerComment(serializers.ModelSerializer):
-    user = CustomUserSerializer()
+    user = SerializerCreator()
     post = SerializerPost()
 
     class Meta:

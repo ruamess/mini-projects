@@ -1,5 +1,6 @@
-from rest_framework import viewsets, permissions, filters
+from rest_framework import viewsets, status
 from rest_framework.response import Response
+
 
 from post_pet.models import PetPost, Like, Comment
 from post_pet.serializers import SerializerPost, SerializerLike, SerializerComment
@@ -12,6 +13,11 @@ class PostViewsSet(viewsets.ModelViewSet):
     def retrieve(self, request, pk=None):
         queryset = self.get_queryset()
         post = queryset.filter(id=pk).first()
+        if post is None:
+            return Response({"error": "Запись не найдена"}, status=status.HTTP_404_NOT_FOUND)
+        post.views += 1
+        post.save()
+
         serializer = self.get_serializer(post)
         return Response(serializer.data)
 
@@ -24,3 +30,5 @@ class LikeViewsSet(viewsets.ModelViewSet):
 class CommentViewsSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = SerializerComment
+
+
