@@ -1,24 +1,23 @@
-import Footer from "./components/Footer"
 import Header from "./components/Header"
+import { observer } from "mobx-react-lite"
+import { Route, Routes } from 'react-router-dom';
+import Home from "./pages/Home";
+import Auth from "./pages/Auth";
 
+const App = observer(() => {
 
-function App() {
-
-  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
-  }
 
   return (
-    <div className="flex flex-col w-screen min-h-screen text-blac bg-white-bg dark:text-white dark:bg-dark-bg transition duration-500">
+    <div className="flex flex-col w-screen min-h-screen text-white bg-bg">
       <Header />
       <main className="flex-grow">
-
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/auth' element={<Auth />} />
+        </Routes>
       </main>
-      <Footer />
     </div>
   )
-}
+})
 
 export default App

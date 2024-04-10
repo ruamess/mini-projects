@@ -94,11 +94,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-]
 
 CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173/',
+]
 
 LANGUAGE_CODE = 'en-us'
 
@@ -112,7 +113,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-APPEND_SLASH = False
+APPEND_SLASH = True
 
 
 SPECTACULAR_SETTINGS = {
