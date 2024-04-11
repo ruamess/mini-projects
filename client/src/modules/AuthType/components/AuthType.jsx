@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { sendSignIn, sendLogIn } from "../api"
 import { HiXMark } from "react-icons/hi2";
+import { NavLink } from "react-router-dom";
 const AuthType = () => {
 
 	const [authType, setAuthType] = useState(true)
@@ -25,13 +26,12 @@ const AuthType = () => {
 
 	return (
 		<div className="bg-ui w-[450px] h-[600px] flex flex-col items-center justify-center rounded-md p-10 sm:p-20 m-2">
-			<div className="flex ">
-				<button>
-					<HiXMark />
-				</button>
-			</div>
-			<div>
+
+			<div className="flex flex-row justify-between items-center container">
 				{authType ? <span className="text-5xl">Login in</span> : <span className="text-5xl">Sign in</span>}
+				<NavLink to={'/'} className="hover:text-acc">
+					<HiXMark fontSize={35} />
+				</NavLink>
 			</div>
 
 			{authType ?
